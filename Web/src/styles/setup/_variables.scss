@@ -1,0 +1,67 @@
+// Typography
+$font-size-base: 13px;
+
+// Font stacks
+$font-family-system: GoogleSans-Regular !important;
+
+// Color
+$color-primary: #0973B9;
+$color-hover:#eb7728;
+$color-default:#019160;
+$color-focus:#EBF9F4;
+$color-alert:#FF4747;
+$color-active:#0973BB;
+$color-background:#BBBBBB;
+$color-border-bottom:#016087;
+$color-border-top:#038AC1;
+//Asset uri
+$image-logo: url('~@/assets/images/logo-text.png');
+$image-toggle-icon: url('~@/assets/images/icon-left-header.png');
+$image-avatar: url('~@/assets/images/EmployeeImage.png');
+$image-dashboard: url('~@/assets/images/iconMenu.png') no-repeat -5px -334px;
+$image-report: url('~@/assets/images/iconMenu.png') no-repeat -3px -194px;
+$image-shopping: url('~@/assets/images/iconMenu.png') no-repeat -1px -377px;
+$image-setting: url('~@/assets/images/iconMenu.png') no-repeat -2px -234px;
+$image-employee: url('~@/assets/images/icon-subscriber.png') no-repeat center;
+$image-refresh: url('~@/assets/images/iconMenu.png');
+$image-support: url('~@/assets/images/ic_support.svg');
+$image-feedback: url('~@/assets/images/viewEmail.png');
+$image-first-page: url('~@/assets/images/grid/page-first.png');
+$image-prev-page: url('~@/assets/images/grid/page-prev.png');
+$image-next-page: url('~@/assets/images/grid/page-next.png');
+$image-last-page: url('~@/assets/images/grid/page-last.png');
+$image-btn-refresh: url('~@/assets/images/grid/refresh.png');
+
+//Button
+$button-border-radius: 4px;
+$button-height: 40px;
+$button-width: 100px;
+$button-text-padding: 25px;
+$button-icon-padding: 13px;
+$text-color:#ffffff;
+//Seconds Button
+$seconds-button-borderline-color: #bbbbbb;
+$seconds-button-text-color: #000000;
+
+//Dropdown
+$combo-box-border-width: 1px;
+$combo-box-border-color: #bbbbbb;
+
+//Field Input
+$input-hint-text-size: 11px;
+$input-height: 40px;
+
+//Menu left
+$icon-size: 20px;
+$item-height: 44px;
+$item-width: 52px;
+
+//Top header
+$header-icon-size: 24px;
+$header-padding: 16px;
+
+//Table
+$cell-min-width: 200px;
+$cell-height: 48px;
+$checkbox-size: 16px;
+$checkbox-padding: 10px; 

@@ -1,0 +1,11 @@
+export const employeeDialogTitles = 'Nhân viên';
+export const addEmployee = 'add';
+export const updateEmployee = 'update';
+export const viewEmployee = 'view';
+// export const employeeDialogTitles = 'Nhân viên';
+// export const employeeDialogTitles = 'Nhân viên';
+// export const employeeDialogTitles = 'Nhân viên';
+// export const employeeDialogTitles = 'Nhân viên';
+// export const employeeDialogTitles = 'Nhân viên';
+// export const employeeDialogTitles = 'Nhân viên';
+// export const employeeDialogTitles = 'Nhân viên';

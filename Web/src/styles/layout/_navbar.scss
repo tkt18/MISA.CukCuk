@@ -1,0 +1,64 @@
+.navbar {
+  position: relative;
+  float: left;
+  width: 230px;
+  height: calc(100vh - 60px);
+  border-right: 1px solid #bbbbbb;
+  background-color: $color-primary;
+}
+
+.navbar .navbar-content {
+  border-top: 1px solid $color-border-bottom;
+  width: 100%;
+}
+
+.navbar .navbar-content .nav-item {
+  display: flex;
+  padding-left: 24px;
+  line-height: 17px;
+    cursor: pointer;
+  line-height: 44px;
+  color: $text-color;
+  background-color: $color-primary;
+  border-top: 1px solid $color-border-top;
+  border-bottom: 1px solid $color-border-bottom;
+}
+
+.navbar .navbar-content .nav-item:hover {
+  background-color: $color-hover;
+}
+
+.navbar .navbar-content .nav-item:focus {
+  background-color: $color-focus;
+}
+
+.navbar .navbar-content .nav-item:active {
+  background-color: $color-active;
+}
+
+.nav-item .nav-item-icon {
+  width: 20px;
+  height: 20px;
+  align-self: center;
+  margin-right: 10px;
+}
+
+/*Tổng quan*/
+.nav-item-dashboard {
+  background: $image-dashboard;
+}
+
+/*Báo cáo*/
+.nav-item-report {
+  background: $image-report;
+}
+
+/*Cài đặt hệ thống*/
+.nav-item-setting {
+   background: $image-setting;
+}
+
+/*Danh mục*/
+.nav-item-dic {
+  background: $image-employee;
+}
