@@ -1,0 +1,12 @@
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\bin\Debug\netcoreapp3.1\MISA.CukCuk.Common.dll
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\obj\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.csprojAssemblyReference.cache
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\obj\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\obj\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.AssemblyInfo.cs
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\bin\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.deps.json
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\bin\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.dll
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\bin\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.pdb
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\bin\Debug\netcoreapp3.1\MISA.CukCuk.Common.pdb
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\obj\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\obj\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.csproj.CopyComplete
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\obj\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.dll
+C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.Infrastructure\obj\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.pdb
