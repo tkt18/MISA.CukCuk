@@ -26,5 +26,11 @@ namespace MISA.CukCuk.Infrastructure.Interfaces
         /// </summary>
         /// <returns>Mã số của thực thể</returns>
         public string GetNewEntityCode();
+        /// <summary>
+        /// Lấy danh sách nhân viên theo tình trạng công việc
+        /// </summary>
+        /// <param name="status">tình trạng công việc</param>
+        /// <returns></returns>
+        IEnumerable<Employee> GetByStatus(int status);
     }
 }

@@ -49,8 +49,20 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            var res = _employeeService.GetEntityById(id);
+            var res = _employeeService.GetEmployeeById(id);
             return StatusCode(res.MISACode,res.Data);
         }
+        /// <summary>
+        /// Lấy danh sách các nhân viên theo tình trạng công việc
+        /// </summary>
+        /// <param name="status">tình trạng công việc</param>
+        /// <returns></returns>
+        [HttpGet("/api/v2/Employees")]
+        public IActionResult GetByState([FromQuery]int status)
+        {
+            var res = _employeeService.GetEmployeesByStatus(status);
+            return StatusCode(res.MISACode, res.Data);
+        }
+
     }
 }

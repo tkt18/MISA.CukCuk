@@ -161,16 +161,12 @@
         </div>
         <div class="paging-record-option">
           <select>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
+            <option value="500">500</option>
           </select>
         </div>
-        <div class="paging-record-info">Hiển thị 1-10 trên 1000 kết quả</div>
+        <div class="paging-record-info">Hiển thị 1-{{numberOfEmployees}} trên {{numberOfEmployees}} kết quả</div>
       </div>
     </div>
-
-    <!-- <Details @closePopup="closePopup" :isHide="isHideParent" /> -->
   </div>
 </template>
 <script>
@@ -179,13 +175,18 @@ import { eventBus } from "../../../eventBus";
 import { addEmployee, updateEmployee, viewEmployee } from "../../../const";
 export default {
   name: "Employees",
-  components: {
-    // Details,
+  computed: {
+    numberOfEmployees : function(){
+      return this.employees.length
+    }
   },
   
   methods: {
-    loadData(event){
-      console.log(event.target.value)
+    async loadData(event){
+      var res = await axios.get(`https://localhost:44399/api/v2/Employees?status=${event.target.value}`);
+      this.employees = res.data.employees;
+      this.selectedEmployee = this.employees[0];
+      console.log(this.selectedEmployee);
     },
     selectEmployee(employee) {
       this.selectedEmployee = { ...employee };
@@ -242,10 +243,6 @@ export default {
 
   data() {
     return {
-      isLoading: false,
-      canCancel: false,
-      onCancel: this.cancelLoading,
-      isHideParent: true,
       selectedEmployee: {},
       date: null,
       employees: [],
@@ -291,7 +288,6 @@ export default {
     this.employees = response.data.data.entities;
     this.selectedEmployee = this.employees[0];
     console.log(this.selectedEmployee);
-    this.isLoading = false;
   },
 };
 </script>

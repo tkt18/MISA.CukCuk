@@ -4,6 +4,7 @@ using MISA.CukCuk.Common.Enumeration;
 using MISA.CukCuk.Common.Util;
 using MISA.CukCuk.Infrastructure.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -40,6 +41,15 @@ namespace MISA.CukCuk.Infrastructure.Repositories
             var procName = Util.GenerateProcedureName<Employee>(TypeName.GetEntityCode);
             var entities = _dbConnection.Query<string>(procName, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return entities;
+        }
+
+        public IEnumerable<Employee> GetByStatus(int status)
+        {
+            var procName = Util.GenerateProcedureName<Employee>(TypeName.GetByStatus);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Status", status);
+            var employees = _dbConnection.Query<Employee>(procName, parameters, commandType: CommandType.StoredProcedure).ToList();
+            return employees;
         }
         #endregion
     }

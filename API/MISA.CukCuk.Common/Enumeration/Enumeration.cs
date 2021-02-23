@@ -127,6 +127,7 @@ namespace MISA.CukCuk.Common.Enumeration
         /// <summary>
         /// Xóa dữ liệu
         /// </summary>
-        Delete
+        Delete,
+        GetByStatus
     }
 }

@@ -23,6 +23,9 @@ namespace MISA.CukCuk.Common.Util
                 case TypeName.GetById:
                     procName = $"Proc_Get{tableName}ByID";
                     break;
+                case TypeName.GetByStatus:
+                    procName = $"Proc_Get{tableName}sByStatus";
+                    break;
                 case TypeName.GetByProp:
                     procName = $"Proc_Get{tableName}sByProp";
                     break;

@@ -30,7 +30,7 @@ namespace MISA.CukCuk.ApplicationCore.Services
         }
         #endregion
         #region Method
-        public ActionResult GetEntityById(Guid id)
+        public ActionResult GetEmployeeById(Guid id)
         {
             var res = new ActionResult();
             res.Data = new { Employee = _employeeRepository.GetById(id) };
@@ -187,6 +187,13 @@ namespace MISA.CukCuk.ApplicationCore.Services
                 _res.Success = false;
                 _res.MISACode = (int)MISACode.ValidateEntity;
             }
+        }
+
+        public ActionResult GetEmployeesByStatus(int status)
+        {
+            var res = new ActionResult();
+            res.Data = new { Employees = _employeeRepository.GetByStatus(status) };
+            return res;
         }
         #endregion
     }

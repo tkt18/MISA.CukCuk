@@ -18,6 +18,12 @@ namespace MISA.CukCuk.ApplicationCore.Interfaces
         /// </summary>
         /// <param name="id">khóa chính trong bảng csdl</param>
         /// <returns>ActionResult có Data là thông tin của thực thể</returns>
-        public ActionResult GetEntityById(Guid id);
+        public ActionResult GetEmployeeById(Guid id);
+        /// <summary>
+        /// Lấy danh sách nhân viên theo trình trạng công việc
+        /// </summary>
+        /// <param name="status">trình trạng công việc</param>
+        /// <returns></returns>
+        public ActionResult GetEmployeesByStatus(int status);
     }
 }
