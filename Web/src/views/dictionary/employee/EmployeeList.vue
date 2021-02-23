@@ -7,7 +7,12 @@
       <div class="content-feature">
         <div class="filter-left">
           <label for="status" class="filter-label">Lọc nhanh</label>
-          <select id="status" name="status" class="m-control" @change="loadData($event)">
+          <select
+            id="status"
+            name="status"
+            class="m-control"
+            @change="loadData($event)"
+          >
             <option value="3">Tất cả</option>
             <option value="0">Thử việc</option>
             <option value="1">Chính thức</option>
@@ -52,7 +57,10 @@
           <span class="button-text">Xóa</span>
         </span>
         <span class="separate"></span>
-        <span class="toolbar-button button-refresh active" @click="btnRefreshOnClick">
+        <span
+          class="toolbar-button button-refresh active"
+          @click="btnRefreshOnClick"
+        >
           <span class="toolbar-button-icon button-refresh-icon"></span>
           <span class="button-text">Nạp</span>
         </span>
@@ -164,7 +172,10 @@
             <option value="500">500</option>
           </select>
         </div>
-        <div class="paging-record-info">Hiển thị 1-{{numberOfEmployees}} trên {{numberOfEmployees}} kết quả</div>
+        <div class="paging-record-info">
+          Hiển thị 1-{{ numberOfEmployees }} trên {{ numberOfEmployees }} kết
+          quả
+        </div>
       </div>
     </div>
   </div>
@@ -176,17 +187,18 @@ import { addEmployee, updateEmployee, viewEmployee } from "../../../const";
 export default {
   name: "Employees",
   computed: {
-    numberOfEmployees : function(){
-      return this.employees.length
-    }
+    numberOfEmployees: function() {
+      return this.employees.length;
+    },
   },
-  
+
   methods: {
-    async loadData(event){
-      var res = await axios.get(`https://localhost:44399/api/v2/Employees?status=${event.target.value}`);
+    async loadData(event) {
+      var res = await axios.get(
+        `https://localhost:44399/api/v2/Employees?status=${event.target.value}`
+      );
       this.employees = res.data.employees;
       this.selectedEmployee = this.employees[0];
-      console.log(this.selectedEmployee);
     },
     selectEmployee(employee) {
       this.selectedEmployee = { ...employee };
@@ -287,7 +299,6 @@ export default {
     );
     this.employees = response.data.data.entities;
     this.selectedEmployee = this.employees[0];
-    console.log(this.selectedEmployee);
   },
 };
 </script>
@@ -299,6 +310,7 @@ export default {
   max-width: 120px;
 }
 .filter-label {
+  min-width: 60px;
   padding: 5px 0;
 }
 .content-feature {
@@ -315,6 +327,9 @@ export default {
 .filter-left {
   display: inline-flex;
   width: 300px;
+  select {
+    min-width: 20px;
+  }
 }
 .filter-left select {
   margin-left: 10px;

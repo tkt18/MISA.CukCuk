@@ -10,8 +10,8 @@
       {{ messages }}
     </div>
     <div class="button">
-      <span class="btn" @click="btnYesOnClick">Đồng ý</span>
-      <span class="btn" @click="btnNoOnClick">Hủy</span>
+      <span class="btn yes" @click="btnYesOnClick">Đồng ý</span>
+      <span class="btn no" @click="btnNoOnClick">Hủy</span>
     </div>
   </BaseDialog>
 </template>
@@ -51,7 +51,6 @@ export default {
         this.isShow = false;
       }
       eventBus.$on("openDialogVerify", (employeeId, fullName) => {
-        console.log("receive");
         this.messages = `Xác nhận xóa nhân viên ${fullName}`;
         this.id = employeeId;
         this.isShow = true;
@@ -73,13 +72,20 @@ export default {
   bottom: 10px;
   right: 10px;
   .btn {
-    width: 60px;
-    height: 40px;
+    display: inline-block;
+    width: 50px;
+    height: 15px;
     border: 1px solid #5ab4ec;
     padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
   }
-  .btn:hover {
+  .btn.yes:hover {
     background-color: #3ab4ec;
+  }
+  .btn.no:hover{
+    background-color: #ec3a3a;
+    color: #fff;
   }
 }
 </style>

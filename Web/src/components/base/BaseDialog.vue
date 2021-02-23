@@ -29,11 +29,8 @@ export default {
   methods: {
     CloseDialog: function() {
       eventBus.$emit('closeDialog', this.title)
-      console.log('SENDED',this.title);
     }
-  },created(){
-    console.log(this.isShow)
-  }
+  },
 };
 </script>
 <style lang="scss">

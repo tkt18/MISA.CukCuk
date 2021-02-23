@@ -41,7 +41,6 @@ export default {
         this.isShow = false;
       }
       eventBus.$on("openDialogAlert", messages => {
-        console.log("receive",messages)
         this.messages = messages;
         this.isShow = true;
       });
@@ -71,6 +70,7 @@ export default {
     height: 40px;
     border: 1px solid #5ab4ec;
     padding: 5px 10px;
+    cursor: pointer;
   }
   .btn-yes:hover {
     background-color: #3ab4ec;

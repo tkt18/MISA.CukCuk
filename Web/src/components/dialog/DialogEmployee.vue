@@ -64,8 +64,8 @@
               name="EmployeeCode"
               class="EmployeeCode"
               v-model="employee.employeeCode"
-              ref="employeeCode"
-              autofocus
+              ref="employeeCodeInput"
+              tabindex="0"
             />
             <span class="hint-text">
               Dùng làm tên đăng nhập vào hệ thống, có thể sử dụng số điện thoại
@@ -237,23 +237,24 @@ export default {
     BaseDialog,
   },
   activated() {
-    // if (!this.isView) {
-    //   this.focus();
-    // }
+    console.log("deactivated", this.$refs.employeeCodeInput);
   },
-  async updated() {
-    this.newEmployeeCode = (
-      await axios.get("https://localhost:44399/api/v1/Employees/Newcode")
-    ).data.data.newEmployeeCode;
+  updated() {
+    axios
+      .get("https://localhost:44399/api/v1/Employees/Newcode")
+      .then((res) => {
+        this.newEmployeeCode = res.data.data.newEmployeeCode;
+      });
+    console.log(this.newEmployeeCode);
   },
   async created() {
+    console.log("created", this.$refs.employeeCodeInput);
     const response = await axios.get("https://localhost:44399/api/v1/Roles");
     this.roles = response.data.data.entities;
 
     this.newEmployeeCode = (
       await axios.get("https://localhost:44399/api/v1/Employees/Newcode")
     ).data.data.newEmployeeCode;
-    console.log(this.newEmployeeCode);
     eventBus.$on("verified", (id) => {
       this.isShow = false;
       axios({
@@ -281,21 +282,29 @@ export default {
       }
     });
     eventBus.$on("openEmployeeDialog", (action, employee) => {
-      this.employee = { ...employee };
-      this.employee.dateOfBirth = this.formatDate(this.employee.dateOfBirth);
-      this.employee.dateOfIssue = this.formatDate(this.employee.dateOfIssue);
-      this.employee.isAllowUseSoftware =
-        this.employee.isAllowUseSoftware == null
-          ? false
-          : this.employee.isAllowUseSoftware;
-      this.employee.employeeCode =
-        this.employee.employeeCode == ""
-          ? this.newEmployeeCode
-          : this.employee.employeeCode;
-      this.action = action;
-      this.isShow = true;
-
-      console.log(this.action, this.employee);
+      axios
+        .get("https://localhost:44399/api/v1/Employees/Newcode")
+        .then((res) => {
+          this.newEmployeeCode = res.data.data.newEmployeeCode;
+          this.employee = { ...employee };
+          this.employee.dateOfBirth = this.formatDate(
+            this.employee.dateOfBirth
+          );
+          this.employee.dateOfIssue = this.formatDate(
+            this.employee.dateOfIssue
+          );
+          this.employee.isAllowUseSoftware =
+            this.employee.isAllowUseSoftware == null
+              ? false
+              : this.employee.isAllowUseSoftware;
+          this.employee.employeeCode =
+            this.employee.employeeCode == ""
+              ? this.newEmployeeCode
+              : this.employee.employeeCode;
+          this.action = action;
+          this.isShow = true;
+          console.log(document.querySelectorAll("input"))
+        });
     });
   },
   computed: {
@@ -332,9 +341,6 @@ export default {
   },
 
   methods: {
-    focus: function() {
-      this.$refs.employeeCode.focus();
-    },
     btnAddOnClick() {
       this.action = addEmployee;
       this.employee = {
@@ -344,6 +350,7 @@ export default {
     },
     btnUpdateOnClick() {
       this.action = updateEmployee;
+      this.$refs.employeeCodeInput.focus();
     },
     btnDeleteOnClick() {
       eventBus.$emit(
@@ -498,7 +505,7 @@ export default {
   background-color: #edeeef;
   border-bottom: 1px solid #d9d9d9;
   display: flex;
-  .toolbar-button:not(.active){
+  .toolbar-button:not(.active) {
     pointer-events: none;
   }
 }

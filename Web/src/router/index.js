@@ -1,13 +1,11 @@
 const { default: VueRouter } = require("vue-router");
 const { default: Vue } = require("vue");
 const { default: Home } = require("../views/Home.vue");
-const { default: Customer } = require("../views/dictionary/customer/CustomerList.vue");
 const { default: Employee } = require("../views/dictionary/employee/EmployeeList.vue");
 
 Vue.use(VueRouter);
 const routes = [
   { path: "/", name: "Home", component: Home },
-  { path: "/dictionary/customer", name: "Customer", component: Customer },
   { path: "/dictionary/employee", name: "Employee", component: Employee },
 ];
 const router = new VueRouter({
