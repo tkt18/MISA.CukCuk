@@ -40,7 +40,7 @@ export default {
   data: function() {
     return {
       title: alertDialogTitle,
-      isShow: true,
+      isShow: false,
       messages: "",
       id: "",
     };

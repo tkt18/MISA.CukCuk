@@ -12,3 +12,17 @@ C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.ApplicationCore
 C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.csproj.CopyComplete
 C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.dll
 C:\Users\thien\OneDrive\Desktop\MISA2021\MISA.CukCuk\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.pdb
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.deps.json
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.dll
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.pdb
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.CukCuk.Common.dll
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.dll
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.CukCuk.Common.pdb
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.CukCuk.Infrastructure.pdb
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.csprojAssemblyReference.cache
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.AssemblyInfoInputs.cache
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.AssemblyInfo.cs
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.csproj.CoreCompileInputs.cache
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.csproj.CopyComplete
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.dll
+D:\Code\MISA.CukCuk\API\MISA.CukCuk.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.CukCuk.ApplicationCore.pdb

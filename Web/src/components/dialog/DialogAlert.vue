@@ -41,6 +41,7 @@ export default {
         this.isShow = false;
       }
       eventBus.$on("openDialogAlert", messages => {
+        console.log("receive",messages)
         this.messages = messages;
         this.isShow = true;
       });

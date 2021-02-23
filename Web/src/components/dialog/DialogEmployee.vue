@@ -101,12 +101,11 @@
           <div>
             <div class="Gender">
               <label for="Gender">Giới tính </label>
-              <input
-                type="text"
-                name="Gender"
-                class="Gender"
-                v-model="employee.genderName"
-              />
+              <select name="Gender" class="Gender" v-model="employee.gender">
+                <option value="0">Nữ</option>
+                <option value="1">Nam</option>
+                <option value="2">Khác</option>
+              </select>
             </div>
 
             <div class="DateOfBirth">
@@ -164,7 +163,7 @@
             <div class="checkbox">
               <span
                 class="check-icon"
-                :class="{ checked: !isFirstRoleChecked }"
+                :class="{ checked: isSecondRoleChecked }"
                 @click="roleSelect(roles[1].roleId)"
               ></span>
               <span>{{ roles[1].roleName }}</span>
@@ -235,7 +234,11 @@ export default {
   async created() {
     const response = await axios.get("https://localhost:44399/api/v1/Roles");
     this.roles = response.data.data.entities;
-    console.log(this.roles);
+
+    this.newEmployeeCode = (
+      await axios.get("https://localhost:44399/api/v1/Employees/Newcode")
+    ).data.data.newEmployeeCode;
+    console.log(this.newEmployeeCode);
     eventBus.$on("verified", (id) => {
       this.isShow = false;
       axios({
@@ -248,8 +251,11 @@ export default {
         })
         .catch(function(error) {
           if (error.response) {
-            console.log( error.response.data.messenge);
-            eventBus.$emit("openDialogAlert", error.response.data.messenge.userMsg);
+            console.log(error.response.data.messenge);
+            eventBus.$emit(
+              "openDialogAlert",
+              error.response.data.messenge.userMsg
+            );
           }
         });
     });
@@ -262,14 +268,29 @@ export default {
       this.employee = { ...employee };
       this.employee.dateOfBirth = this.formatDate(this.employee.dateOfBirth);
       this.employee.dateOfIssue = this.formatDate(this.employee.dateOfIssue);
+      this.employee.isAllowUseSoftware =
+        this.employee.isAllowUseSoftware == null
+          ? 0
+          : this.employee.isAllowUseSoftware;
+      this.employee.employeeCode =
+        this.employee.employeeCode == ""
+          ? this.newEmployeeCode
+          : this.employee.employeeCode;
       this.action = action;
       this.isShow = true;
+      
       console.log(this.action, this.employee);
     });
   },
   computed: {
     isFirstRoleChecked: function() {
       if (this.employee.roleId == this.roles[0].roleId) {
+        return true;
+      }
+      return false;
+    },
+    isSecondRoleChecked: function() {
+      if (this.employee.roleId == this.roles[1].roleId) {
         return true;
       }
       return false;
@@ -293,6 +314,7 @@ export default {
       return false;
     },
   },
+
   methods: {
     focus: function() {
       this.$refs.employeeCode.focus();
@@ -311,28 +333,76 @@ export default {
         this.employee.fullName
       );
     },
-
+    validate() {
+      this.msg = [];
+      if (
+        this.employee.employeeCode == null ||
+        this.employee.employeeCode == ""
+      ) {
+        this.msg.push("Mã nhân viên không được để trống");
+      }
+      if (
+        this.employee.phoneNumber == null ||
+        this.employee.phoneNumber == ""
+      ) {
+        this.msg.push("Số điện thoại không được để trống");
+      }
+      if (
+        this.employee.identifyNumber == null ||
+        this.employee.identifyNumber == ""
+      ) {
+        this.msg.push("Số CMND không được để trống");
+      }
+      if (this.employee.roleId == null || this.employee.roleId == "") {
+        this.msg.push("Phải phân quyền cho nhân viên");
+      }
+      if (this.employee.email == null || this.employee.email == "") {
+        this.msg.push("Email không được để trống");
+      } else if (!/\S+@\S+\.\S+/.test(this.employee.email)) {
+        this.msg.push("Email chưa đúng định dạng");
+      }
+    },
     async btnSubmitOnClick() {
-      var _method = this.isAdd ? "post" : "put";
-      var _url = this.isAdd
-        ? `https://localhost:44399/api/v1/Employees`
-        : `https://localhost:44399/api/v1/Employees/${this.employee.employeeId}`;
-
-      axios({
-        method: _method,
-        url: _url,
-        data: this.employee,
-      })
-        .then(function(response) {
-          console.log(response);
-          eventBus.$emit("openDialogAlert", response.data.data.userMsg);
-        })
-        .catch(function(error) {
-          if (error.response) {
-            console.log( error.response.data.messenge);
-            eventBus.$emit("openDialogAlert", error.response.data.messenge.userMsg);
+      this.validate();
+      if (this.msg.length > 0) {
+        console.log(this.msg);
+        eventBus.$emit("openDialogAlert", this.msg);
+      } else {
+        var _method = this.isAdd ? "post" : "put";
+        var _url = this.isAdd
+          ? `https://localhost:44399/api/v1/Employees`
+          : `https://localhost:44399/api/v1/Employees/${this.employee.employeeId}`;
+        var _data = {};
+        for (var prop in this.employee) {
+          if (this.employee[prop] != null && this.employee[prop] != "") {
+            _data[prop] = this.employee[prop];
           }
-        });
+        }
+        axios({
+          method: _method,
+          url: _url,
+          data: _data,
+        })
+          .then(function(response) {
+            console.log(response);
+            this.isShow = false;
+            eventBus.$emit(
+              "openDialogAlert",
+              response.data.data.messenge.userMsg
+            );
+          })
+          .catch(function(error) {
+            if (error.response) {
+              var msg;
+              if (error.response.data.messenge != null) {
+                msg = error.response.data.messenge.userMsg;
+              } else {
+                msg = error.response.data.userMsg;
+              }
+              eventBus.$emit("openDialogAlert", msg);
+            }
+          });
+      }
     },
     IsAllowUseSoftwareSelect() {
       this.employee.isAllowUseSoftware = !this.employee.isAllowUseSoftware;
@@ -357,6 +427,8 @@ export default {
       title: employeeDialogTitles,
       isShow: false,
       action: null,
+      newEmployeeCode: null,
+      msg: [],
       employee: {
         dateOfBirth: "",
         dateOfIssue: "",
@@ -482,7 +554,7 @@ export default {
     div.checkbox {
       display: inline;
       margin-right: 40px;
-      span.check-icon {
+      .check-icon {
         cursor: pointer;
         display: inline-block;
         background: url("~@/assets/images/checkbox.png") no-repeat -1px -1px;
@@ -490,7 +562,7 @@ export default {
         height: 13px;
         margin-right: 10px;
       }
-      span.check-icon.checked {
+      .check-icon.checked {
         background: url("~@/assets/images/checkbox.png") no-repeat -1px -15px;
         width: 13px;
         height: 13px;
@@ -525,10 +597,16 @@ export default {
     }
     div.Email input,
     div.PhoneNumber input,
-    div.Gender input,
     div.IdentifyNumber input {
       width: 250px;
       margin-right: 20px;
+    }
+    div.Gender select {
+      width: 256px;
+      height: 28px;
+      margin: 0;
+      margin-right: 20px;
+      padding: 0;
     }
   }
   .form-group-2 {

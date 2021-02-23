@@ -52,7 +52,7 @@
           <span class="button-text">Xóa</span>
         </span>
         <span class="separate"></span>
-        <span class="toolbar-button button-refresh active">
+        <span class="toolbar-button button-refresh active" @click="btnRefreshOnClick">
           <span class="toolbar-button-icon button-refresh-icon"></span>
           <span class="button-text">Nạp</span>
         </span>
@@ -188,7 +188,7 @@ export default {
       this.selectedEmployee = { ...employee };
     },
     btnAddOnClick() {
-      eventBus.$emit("openEmployeeDialog", addEmployee, {});
+      eventBus.$emit("openEmployeeDialog", addEmployee, this.newEmployee);
     },
     btnViewOnClick() {
       eventBus.$emit("openEmployeeDialog", viewEmployee, this.selectedEmployee);
@@ -246,6 +246,25 @@ export default {
       selectedEmployee: {},
       date: null,
       employees: [],
+      newEmployee: {
+        dateOfBirth: "",
+        dateOfIssue: "",
+        email: "",
+        employeeCode: "",
+        employeeId: "",
+        fullName: "",
+        gender: "",
+        genderName: "",
+        identifyNumber: "",
+        isAllowUseSoftware: false,
+        modifiedBy: "",
+        modifiedDate: "",
+        phoneNumber: "",
+        placeOfIssue: "",
+        roleId: "",
+        status: "",
+        statusName: "",
+      },
     };
   },
   async created() {
