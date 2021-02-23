@@ -145,7 +145,7 @@ namespace MISA.CukCuk.Common.EntityModels
         /// <summary>
         /// Được phép sử dụng phần mềm
         /// </summary>
-        public int? IsAllowUseSoftware { get; set; }
+        public Boolean? IsAllowUseSoftware { get; set; }
         #endregion
         #region Method
         #endregion

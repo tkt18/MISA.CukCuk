@@ -33,7 +33,11 @@
         <span class="toolbar-button-icon button-delete-icon"></span>
         <span class="button-text">Xóa</span>
       </span>
-      <span class="toolbar-button button-cancle" :class="{ active: isUpdate }">
+      <span
+        class="toolbar-button button-cancle"
+        :class="{ active: isUpdate }"
+        @click="btnCancleOnClick"
+      >
         <span class="toolbar-button-icon button-cancle-icon"></span>
         <span class="button-text">Hoãn</span>
       </span>
@@ -42,7 +46,7 @@
         <span class="toolbar-button-icon button-help-icon"></span>
         <span class="button-text">Giúp</span>
       </span>
-      <span class="toolbar-button button-close active">
+      <span class="toolbar-button button-close active" @click="isShow = false">
         <span class="toolbar-button-icon button-close-icon"></span>
         <span class="button-text">Đóng</span>
       </span>
@@ -50,7 +54,7 @@
     <div class="tabbar">
       <div class="tab-general-information selected">Thông tin chung</div>
     </div>
-    <div class="form">
+    <div class="form" :class="{ disable: isView }">
       <form>
         <div class="form-group-1">
           <div class="EmployeeCode">
@@ -61,6 +65,7 @@
               class="EmployeeCode"
               v-model="employee.employeeCode"
               ref="employeeCode"
+              autofocus
             />
             <span class="hint-text">
               Dùng làm tên đăng nhập vào hệ thống, có thể sử dụng số điện thoại
@@ -231,6 +236,16 @@ export default {
   components: {
     BaseDialog,
   },
+  activated() {
+    // if (!this.isView) {
+    //   this.focus();
+    // }
+  },
+  async updated() {
+    this.newEmployeeCode = (
+      await axios.get("https://localhost:44399/api/v1/Employees/Newcode")
+    ).data.data.newEmployeeCode;
+  },
   async created() {
     const response = await axios.get("https://localhost:44399/api/v1/Roles");
     this.roles = response.data.data.entities;
@@ -247,6 +262,7 @@ export default {
         data: this.employee,
       })
         .then(function(response) {
+          this.isShow = false;
           console.log(response);
         })
         .catch(function(error) {
@@ -270,7 +286,7 @@ export default {
       this.employee.dateOfIssue = this.formatDate(this.employee.dateOfIssue);
       this.employee.isAllowUseSoftware =
         this.employee.isAllowUseSoftware == null
-          ? 0
+          ? false
           : this.employee.isAllowUseSoftware;
       this.employee.employeeCode =
         this.employee.employeeCode == ""
@@ -278,7 +294,7 @@ export default {
           : this.employee.employeeCode;
       this.action = action;
       this.isShow = true;
-      
+
       console.log(this.action, this.employee);
     });
   },
@@ -321,17 +337,23 @@ export default {
     },
     btnAddOnClick() {
       this.action = addEmployee;
+      this.employee = {
+        employeeCode: this.newEmployeeCode,
+        isAllowUseSoftware: false,
+      };
     },
     btnUpdateOnClick() {
       this.action = updateEmployee;
     },
     btnDeleteOnClick() {
-      console.log("bus");
       eventBus.$emit(
         "openDialogVerify",
         this.employee.employeeId,
         this.employee.fullName
       );
+    },
+    btnCancleOnClick() {
+      this.action = viewEmployee;
     },
     validate() {
       this.msg = [];
@@ -384,8 +406,8 @@ export default {
           data: _data,
         })
           .then(function(response) {
-            console.log(response);
             this.isShow = false;
+            console.log(response);
             eventBus.$emit(
               "openDialogAlert",
               response.data.data.messenge.userMsg
@@ -476,6 +498,9 @@ export default {
   background-color: #edeeef;
   border-bottom: 1px solid #d9d9d9;
   display: flex;
+  .toolbar-button:not(.active){
+    pointer-events: none;
+  }
 }
 .toolbar-button {
   opacity: 0.3;
@@ -666,5 +691,8 @@ export default {
       }
     }
   }
+}
+.form.disable * {
+  pointer-events: none;
 }
 </style>

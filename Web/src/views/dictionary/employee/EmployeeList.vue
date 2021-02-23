@@ -1,6 +1,5 @@
 <template>
   <div class="content-body">
-    <!-- <BaseLoading :showLoading="isLoading"/> -->
     <div class="header-content">
       <div class="title">Danh sách</div>
       <span class="arrow-icon"></span>
@@ -8,7 +7,8 @@
       <div class="content-feature">
         <div class="filter-left">
           <label for="status" class="filter-label">Lọc nhanh</label>
-          <select id="status" name="status" class="m-control">
+          <select id="status" name="status" class="m-control" @change="loadData($event)">
+            <option value="3">Tất cả</option>
             <option value="0">Thử việc</option>
             <option value="1">Chính thức</option>
             <option value="2">Nghỉ việc</option>
@@ -184,6 +184,9 @@ export default {
   },
   
   methods: {
+    loadData(event){
+      console.log(event.target.value)
+    },
     selectEmployee(employee) {
       this.selectedEmployee = { ...employee };
     },
