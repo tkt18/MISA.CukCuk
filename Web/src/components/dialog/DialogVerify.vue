@@ -1,12 +1,17 @@
 <template>
-  <BaseDialog width="300" height="150" :title="title" :isShow="isShow">
-    <div class="message">
-      <div v-for="(message, index) in messages" :key="index">
-        {{ message }}
-      </div>
+  <BaseDialog
+    class="alert"
+    width="300"
+    height="150"
+    :title="title"
+    :isShow="isShow"
+  >
+    <div class="message-verify">
+      {{ messages }}
     </div>
     <div class="button">
-      <span class="btn-yes" @click="btnYesOnClick">Đồng ý</span>
+      <span class="btn" @click="btnYesOnClick">Đồng ý</span>
+      <span class="btn" @click="btnNoOnClick">Hủy</span>
     </div>
   </BaseDialog>
 </template>
@@ -16,13 +21,18 @@ import BaseDialog from "../base/BaseDialog";
 import { alertDialogTitle } from "../../const";
 import { eventBus } from "../../eventBus";
 export default {
-  name: "DialogAlert",
+  name: "DialogVertify",
   components: {
     BaseDialog,
   },
   computed: {},
   methods: {
     btnYesOnClick: function() {
+      eventBus.$emit("verified", this.id);
+      this.isShow = false;
+      this.messages = null;
+    },
+    btnNoOnClick: function() {
       this.isShow = false;
       this.messages = null;
     },
@@ -30,9 +40,9 @@ export default {
   data: function() {
     return {
       title: alertDialogTitle,
-      type: "",
-      isShow: false,
-      messages: [],
+      isShow: true,
+      messages: "",
+      id: "",
     };
   },
   created() {
@@ -40,8 +50,10 @@ export default {
       if (this.title == title) {
         this.isShow = false;
       }
-      eventBus.$on("openDialogAlert", messages => {
-        this.messages = messages;
+      eventBus.$on("openDialogVerify", (employeeId, fullName) => {
+        console.log("receive");
+        this.messages = `Xác nhận xóa nhân viên ${fullName}`;
+        this.id = employeeId;
         this.isShow = true;
       });
     });
@@ -50,28 +62,23 @@ export default {
 </script>
 
 <style lang="scss">
-.message{
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  div{
-    padding: 2px 0;
-  }
+.alert {
+  z-index: 3;
+}
+.message-verify {
+  margin-top: 65px;
 }
 .button {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  .btn-yes {
+  .btn {
     width: 60px;
     height: 40px;
     border: 1px solid #5ab4ec;
     padding: 5px 10px;
   }
-  .btn-yes:hover {
+  .btn:hover {
     background-color: #3ab4ec;
   }
 }

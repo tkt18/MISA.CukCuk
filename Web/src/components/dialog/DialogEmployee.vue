@@ -1,19 +1,35 @@
 <template>
   <BaseDialog width="900" height="650" :title="title" :isShow="isShow">
     <div class="dialog-toolbar">
-      <span class="toolbar-button button-add" :class="{ active: isAdd }" @click="btnAddOnClick">
+      <span
+        class="toolbar-button button-add"
+        :class="{ active: isAdd }"
+        @click="btnAddOnClick"
+      >
         <span class="toolbar-button-icon button-add-icon"></span>
         <span class="button-text">Thêm</span>
       </span>
-      <span class="toolbar-button button-update" :class="{ active: isView }" @click="btnUpdateOnClick">
+      <span
+        class="toolbar-button button-update"
+        :class="{ active: isView }"
+        @click="btnUpdateOnClick"
+      >
         <span class="toolbar-button-icon button-update-icon"></span>
         <span class="button-text">Sửa</span>
       </span>
-      <span class="toolbar-button button-submit" :class="{ active: !isView }" @click="btnSubmitOnClick">
+      <span
+        class="toolbar-button button-submit"
+        :class="{ active: !isView }"
+        @click="btnSubmitOnClick"
+      >
         <span class="toolbar-button-icon button-submit-icon"></span>
         <span class="button-text">Cất</span>
       </span>
-      <span class="toolbar-button button-delete" :class="{ active: !isAdd }" @click="btnDeleteOnClick">
+      <span
+        class="toolbar-button button-delete"
+        :class="{ active: !isAdd }"
+        @click="btnDeleteOnClick"
+      >
         <span class="toolbar-button-icon button-delete-icon"></span>
         <span class="button-text">Xóa</span>
       </span>
@@ -220,7 +236,23 @@ export default {
     const response = await axios.get("https://localhost:44399/api/v1/Roles");
     this.roles = response.data.data.entities;
     console.log(this.roles);
-
+    eventBus.$on("verified", (id) => {
+      this.isShow = false;
+      axios({
+        method: "delete",
+        url: `https://localhost:44399/api/v1/Employees/${id}`,
+        data: this.employee,
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          if (error.response) {
+            console.log( error.response.data.messenge);
+            eventBus.$emit("openDialogAlert", error.response.data.messenge.userMsg);
+          }
+        });
+    });
     eventBus.$on("closeDialog", (title) => {
       if (this.title == title) {
         this.isShow = false;
@@ -262,9 +294,9 @@ export default {
     },
   },
   methods: {
-      focus: function () {
-    this.$refs.employeeCode.focus()
-  },
+    focus: function() {
+      this.$refs.employeeCode.focus();
+    },
     btnAddOnClick() {
       this.action = addEmployee;
     },
@@ -272,16 +304,12 @@ export default {
       this.action = updateEmployee;
     },
     btnDeleteOnClick() {
-      axios({
-        method: "delete",
-        url: `https://localhost:44399/api/v1/Employees/${this.employee.employeeId}`,
-        data: this.employee,
-      }).then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      console.log("bus");
+      eventBus.$emit(
+        "openDialogVerify",
+        this.employee.employeeId,
+        this.employee.fullName
+      );
     },
 
     async btnSubmitOnClick() {
@@ -297,9 +325,13 @@ export default {
       })
         .then(function(response) {
           console.log(response);
+          eventBus.$emit("openDialogAlert", response.data.data.userMsg);
         })
         .catch(function(error) {
-          console.log(error);
+          if (error.response) {
+            console.log( error.response.data.messenge);
+            eventBus.$emit("openDialogAlert", error.response.data.messenge.userMsg);
+          }
         });
     },
     IsAllowUseSoftwareSelect() {

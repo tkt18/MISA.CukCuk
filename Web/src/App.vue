@@ -1,26 +1,32 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header />
     <Navbar />
-    <Content/>
+    <Content />
     <DialogEmployee />
+    <DialogAlert />
+    <DialogVertify />
   </div>
 </template>
 
 <script>
-import Navbar from "./components/layout/TheNavbar"
-import Header from "./components/layout/TheHeader"
-import Content from "./components/layout/TheContent"
-import DialogEmployee from "./components/dialog/DialogEmployee"
+import Navbar from "./components/layout/TheNavbar";
+import Header from "./components/layout/TheHeader";
+import Content from "./components/layout/TheContent";
+import DialogEmployee from "./components/dialog/DialogEmployee";
+import DialogAlert from "./components/dialog/DialogAlert";
+import DialogVertify from "./components/dialog/DialogVerify";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Navbar,
     Content,
     Header,
-    DialogEmployee
-  }
-}
+    DialogEmployee,
+    DialogAlert,
+    DialogVertify,
+  },
+};
 </script>
 
 <style lang="scss">

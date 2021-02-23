@@ -182,6 +182,7 @@ export default {
   components: {
     // Details,
   },
+  
   methods: {
     selectEmployee(employee) {
       this.selectedEmployee = { ...employee };
@@ -200,11 +201,11 @@ export default {
       );
     },
     async btnDeleteOnClick() {
-      const res = await axios.delete(
-        `https://localhost:44399/api/v1/Employees/${this.selectedEmployee.employeeId}`
+      eventBus.$emit(
+        "openDialogVerify",
+        this.selectedEmployee.employeeId,
+        this.selectedEmployee.fullName
       );
-      await this.btnRefreshOnClick();
-      console.log(res);
     },
     async btnRefreshOnClick() {
       const response = await axios.get(
@@ -224,6 +225,7 @@ export default {
       return false;
     },
     dOb: function(_date) {
+      if (_date == null) return null;
       var date = new Date(_date);
       return `${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}/${
         date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1
@@ -247,6 +249,19 @@ export default {
     };
   },
   async created() {
+    eventBus.$on("verified", (id) => {
+      axios({
+        method: "delete",
+        url: `https://localhost:44399/api/v1/Employees/${id}`,
+        data: this.employee,
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
     this.isLoading = true;
     const response = await axios.get(
       "https://localhost:44399/api/v1/Employees"
