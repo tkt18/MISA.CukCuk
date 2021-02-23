@@ -274,7 +274,7 @@ export default {
     btnDeleteOnClick() {
       axios({
         method: "delete",
-        url: `https://localhost:44399/api/v1/Employees${this.employee.employeeId}`,
+        url: `https://localhost:44399/api/v1/Employees/${this.employee.employeeId}`,
         data: this.employee,
       }).then(function(response) {
           console.log(response);
@@ -288,7 +288,7 @@ export default {
       var _method = this.isAdd ? "post" : "put";
       var _url = this.isAdd
         ? `https://localhost:44399/api/v1/Employees`
-        : `https://localhost:44399/api/v1/Employees${this.employee.employeeId}`;
+        : `https://localhost:44399/api/v1/Employees/${this.employee.employeeId}`;
 
       axios({
         method: _method,

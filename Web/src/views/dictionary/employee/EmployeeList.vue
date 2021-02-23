@@ -310,15 +310,17 @@ export default {
   width: 183px;
 }
 .select-page {
-      display: inline;
-    width: 50px;
-    height: 20px;
-    padding: 0px;
-    margin: 0px;
+  display: inline;
+  width: 150px;
+  height: 20px;
+  padding: 0px;
+  margin: 0px;
+  input {
     text-align: center;
+    display: inline;
+  }
 }
 .selectedRow {
   background-color: #acd0e6 !important;
 }
-
 </style>
