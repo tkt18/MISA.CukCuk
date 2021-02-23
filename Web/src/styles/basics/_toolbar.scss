@@ -1,67 +1,71 @@
 .toolbar {
-    position: relative;
-    top: 0;
-    height: 22px;
-    width: calc(100% - 12px);
-    padding: 5px 0 5px 10px;
-    background-color: #edeeef;
-    border: 1px solid #c9c9c9;
-    display: flex;
+  position: relative;
+  top: 0;
+  height: 22px;
+  width: calc(100% - 12px);
+  padding: 5px 0 5px 10px;
+  background-color: #edeeef;
+  border: 1px solid #c9c9c9;
+  display: flex;
 }
 .toolbar-button {
-    opacity: 0.3;
-    width: 60px;
-    height: 20px;
-    padding: 2px 0 2px 0;
+  opacity: 0.3;
+  width: 60px;
+  height: 20px;
+  padding: 2px 0 2px 0;
+  cursor: pointer;
+}
+.active {
+  opacity: 1;
+}
+.toolbar-button.active:hover {
+  background-color: #ffffff;
+  border: 1px solid #0071c1;
+  margin: -1px;
+}
+.toolbar-button-icon {
+  display: inline-block;
+  width: 16px;
+  height: 20px;
+}
+
+.button-text {
+  padding-left: 4px;
+  line-height: 16px;
+  vertical-align: top;
+}
+.separate {
+  background-color: #ccc;
+  height: 22px;
+  width: 1px;
+}
+.paging-bar {
+  border: 1px solid #c9c9c9;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 16px;
+  z-index: 1 !important;
+  height: 30px;
+
+  .paging-record-info {
+    position: absolute;
+    right: 16px;
+  }
+
+  .paging-record-option {
+    right: 16px;
+    select {
+      margin: 0;
+    }
+  }
+
+  .paging-option button {
+    outline: none;
     cursor: pointer;
   }
-  .active {
-    opacity: 1;
-  }
-  .toolbar-button.active:hover {
-    background-color: #ffffff;
-    border: 1px solid #0071c1;
-    margin: -1px;
-  }
-  .toolbar-button-icon {
-    display: inline-block;
-    width: 16px;
-    height: 20px;
-  }
- 
-  .button-text {
-    padding-left: 4px;
-    line-height: 16px;
-    vertical-align: top;
-  }
-  .separate {
-    background-color: #ccc;
-    height: 22px;
-    width: 1px;
-  }
-.paging-bar {
-    border: 1px solid #c9c9c9;
-    position: relative;
+  .paging-option {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 16px;
-    z-index: 1 !important;
-    height: 30px;
+  }
 }
-    .paging-bar .paging-record-info {
-        position: absolute;
-        right: 16px;
-    }
-
-    .paging-bar .paging-record-option {
-        right: 16px;
-    }
-
-    .paging-bar .paging-option button{
-        outline: none;
-        cursor: pointer;
-    }
-    .paging-bar .paging-option{
-        display: flex;
-    }

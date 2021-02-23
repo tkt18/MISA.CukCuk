@@ -187,7 +187,7 @@ export default {
       this.selectedEmployee = { ...employee };
     },
     btnAddOnClick() {
-      eventBus.$emit("openEmployeeDialog", addEmployee);
+      eventBus.$emit("openEmployeeDialog", addEmployee, {});
     },
     btnViewOnClick() {
       eventBus.$emit("openEmployeeDialog", viewEmployee, this.selectedEmployee);
@@ -310,9 +310,15 @@ export default {
   width: 183px;
 }
 .select-page {
-  padding: 0 5px;
+      display: inline;
+    width: 50px;
+    height: 20px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
 }
 .selectedRow {
   background-color: #acd0e6 !important;
 }
+
 </style>

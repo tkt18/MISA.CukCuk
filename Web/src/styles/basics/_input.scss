@@ -127,4 +127,7 @@ input::placeholder {
 .hint-text {
     font-style: italic;
     font-size: 11px;
+    display: inline-block;
+    width: 400px;
+    vertical-align: middle;
 }
