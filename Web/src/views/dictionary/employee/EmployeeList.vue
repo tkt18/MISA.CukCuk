@@ -182,8 +182,7 @@
 </template>
 <script>
 import * as axios from "axios";
-import { eventBus } from "../../../eventBus";
-import { addEmployee, updateEmployee, viewEmployee } from "../../../const";
+import { addEmployee, updateEmployee, viewEmployee, verified, openDialogVerify, openEmployeeDialog } from "../../../const";
 export default {
   name: "Employees",
   computed: {
@@ -204,21 +203,21 @@ export default {
       this.selectedEmployee = { ...employee };
     },
     btnAddOnClick() {
-      eventBus.$emit("openEmployeeDialog", addEmployee, this.newEmployee);
+      window.eventBus.$emit(openEmployeeDialog, addEmployee, this.newEmployee);
     },
     btnViewOnClick() {
-      eventBus.$emit("openEmployeeDialog", viewEmployee, this.selectedEmployee);
+      window.eventBus.$emit(openEmployeeDialog, viewEmployee, this.selectedEmployee);
     },
     btnUpdateOnClick() {
-      eventBus.$emit(
-        "openEmployeeDialog",
+      window.eventBus.$emit(
+        openEmployeeDialog,
         updateEmployee,
         this.selectedEmployee
       );
     },
-    async btnDeleteOnClick() {
-      eventBus.$emit(
-        "openDialogVerify",
+    btnDeleteOnClick() {
+      window.eventBus.$emit(
+        openDialogVerify,
         this.selectedEmployee.employeeId,
         this.selectedEmployee.fullName
       );
@@ -232,7 +231,7 @@ export default {
     },
     rowOnClick(employee) {
       this.selectEmployee(employee);
-      eventBus.$emit("openEmployeeDialog", viewEmployee, employee);
+      window.eventBus.$emit(openEmployeeDialog, viewEmployee, employee);
     },
     // closePopup(value) {
     //   this.isHideParent = value;
@@ -280,14 +279,15 @@ export default {
     };
   },
   async created() {
-    eventBus.$on("verified", (id) => {
+    window.eventBus.$on(verified, (id) => {
       axios({
         method: "delete",
         url: `https://localhost:44399/api/v1/Employees/${id}`,
         data: this.employee,
       })
-        .then(function(response) {
+        .then((response) => {
           console.log(response);
+          this.btnRefreshOnClick();
         })
         .catch(function(error) {
           console.log(error);

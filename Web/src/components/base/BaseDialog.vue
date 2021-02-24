@@ -1,19 +1,19 @@
 <template>
-  <div class="base-dialog" v-if="isShow">
+  <div class="base-dialog" :style="style">
     <div class="background"></div>
     <div class="dialog" :style="{ width: width + 'px', height: height + 'px' }">
       <div class="title-bar">
         <div class="title">
           <p class="title-name">{{ title }}</p>
         </div>
-        <div class="close-button" @click="CloseDialog"></div>
+        <div class="close-button" @click="CloseDialogOnClick"></div>
       </div>
       <slot></slot>
     </div>
   </div>
 </template>
 <script>
-import {eventBus} from '../../eventBus'
+import { closeDialog } from '../../const';
 export default {
   name: "BaseDialog",
   props: {
@@ -22,13 +22,14 @@ export default {
     height: String,
     isShow: Boolean
   },
-  data:function() {
-    return {
-    }
-},
+  computed: {
+    style : function() {
+        return this.isShow ? {display:"unset"} : {display:"none"}
+    } 
+  },
   methods: {
-    CloseDialog: function() {
-      eventBus.$emit('closeDialog', this.title)
+    CloseDialogOnClick: function() {
+      window.eventBus.$emit(closeDialog, this.title)
     }
   },
 };

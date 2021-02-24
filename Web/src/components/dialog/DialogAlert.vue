@@ -13,8 +13,7 @@
 
 <script>
 import BaseDialog from "../base/BaseDialog";
-import { alertDialogTitle } from "../../const";
-import { eventBus } from "../../eventBus";
+import { alertDialogTitle,closeDialog,openDialogAlert } from "../../const";
 export default {
   name: "DialogAlert",
   components: {
@@ -36,11 +35,12 @@ export default {
     };
   },
   created() {
-    eventBus.$on("closeDialog", (title) => {
+    window.eventBus.$on(closeDialog, (title) => {
       if (this.title == title) {
         this.isShow = false;
       }
-      eventBus.$on("openDialogAlert", messages => {
+      window.eventBus.$on(openDialogAlert, messages => {
+        console.log(messages);
         this.messages = messages;
         this.isShow = true;
       });

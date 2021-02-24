@@ -18,8 +18,7 @@
 
 <script>
 import BaseDialog from "../base/BaseDialog";
-import { alertDialogTitle } from "../../const";
-import { eventBus } from "../../eventBus";
+import { verifyDialogTitle, verified, openDialogVerify, closeDialog } from "../../const";
 export default {
   name: "DialogVertify",
   components: {
@@ -28,7 +27,7 @@ export default {
   computed: {},
   methods: {
     btnYesOnClick: function() {
-      eventBus.$emit("verified", this.id);
+      window.eventBus.$emit(verified, this.id);
       this.isShow = false;
       this.messages = null;
     },
@@ -39,23 +38,25 @@ export default {
   },
   data: function() {
     return {
-      title: alertDialogTitle,
+      title: verifyDialogTitle,
       isShow: false,
       messages: "",
       id: "",
     };
   },
   created() {
-    eventBus.$on("closeDialog", (title) => {
+    console.log("Verify Dialog created");
+    window.eventBus.$on(closeDialog, (title) => {
       if (this.title == title) {
         this.isShow = false;
       }
-      eventBus.$on("openDialogVerify", (employeeId, fullName) => {
+    });
+    window.eventBus.$on(openDialogVerify, (employeeId, fullName) => {
+        console.log(employeeId, fullName);
         this.messages = `Xác nhận xóa nhân viên ${fullName}`;
         this.id = employeeId;
         this.isShow = true;
       });
-    });
   },
 };
 </script>

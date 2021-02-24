@@ -94,7 +94,7 @@
           </div>
 
           <div class="FullName">
-            <label for="FullName">Học và tên <span>(*)</span></label>
+            <label for="FullName">Họ và tên <span>(*)</span></label>
             <input
               type="text"
               name="FullName"
@@ -227,8 +227,12 @@ import {
   employeeDialogTitles,
   updateEmployee,
   viewEmployee,
+  verified,
+  openDialogAlert,
+  openDialogVerify,
+  openEmployeeDialog,
+  closeDialog
 } from "../../const";
-import { eventBus } from "../../eventBus";
 import * as axios from "axios";
 import BaseDialog from "../base/BaseDialog";
 export default {
@@ -255,33 +259,37 @@ export default {
     this.newEmployeeCode = (
       await axios.get("https://localhost:44399/api/v1/Employees/Newcode")
     ).data.data.newEmployeeCode;
-    eventBus.$on("verified", (id) => {
+    window.eventBus.$on(verified, (id) => {
       this.isShow = false;
       axios({
         method: "delete",
         url: `https://localhost:44399/api/v1/Employees/${id}`,
         data: this.employee,
       })
-        .then(function(response) {
+        .then(() => {
           this.isShow = false;
-          console.log(response);
+          window.eventBus.$emit(
+              openDialogAlert,
+              ["Thành Công"]
+            );
+          this.btnRefreshOnClick();
         })
         .catch(function(error) {
           if (error.response) {
             console.log(error.response.data.messenge);
-            eventBus.$emit(
-              "openDialogAlert",
+            window.eventBus.$emit(
+              openDialogAlert,
               error.response.data.messenge.userMsg
             );
           }
         });
     });
-    eventBus.$on("closeDialog", (title) => {
+    window.eventBus.$on(closeDialog, (title) => {
       if (this.title == title) {
         this.isShow = false;
       }
     });
-    eventBus.$on("openEmployeeDialog", (action, employee) => {
+    window.eventBus.$on(openEmployeeDialog, (action, employee) => {
       axios
         .get("https://localhost:44399/api/v1/Employees/Newcode")
         .then((res) => {
@@ -303,7 +311,6 @@ export default {
               : this.employee.employeeCode;
           this.action = action;
           this.isShow = true;
-          console.log(document.querySelectorAll("input"))
         });
     });
   },
@@ -353,8 +360,8 @@ export default {
       this.$refs.employeeCodeInput.focus();
     },
     btnDeleteOnClick() {
-      eventBus.$emit(
-        "openDialogVerify",
+      window.eventBus.$emit(
+        openDialogVerify,
         this.employee.employeeId,
         this.employee.fullName
       );
@@ -395,7 +402,7 @@ export default {
       this.validate();
       if (this.msg.length > 0) {
         console.log(this.msg);
-        eventBus.$emit("openDialogAlert", this.msg);
+        window.eventBus.$emit(openDialogAlert, this.msg);
       } else {
         var _method = this.isAdd ? "post" : "put";
         var _url = this.isAdd
@@ -412,13 +419,10 @@ export default {
           url: _url,
           data: _data,
         })
-          .then(function(response) {
+          .then( () => {
             this.isShow = false;
-            console.log(response);
-            eventBus.$emit(
-              "openDialogAlert",
-              response.data.data.messenge.userMsg
-            );
+            window.eventBus.$emit(openDialogAlert, ["Thành Công"]);
+            this.btnRefreshOnClick();
           })
           .catch(function(error) {
             if (error.response) {
@@ -428,7 +432,7 @@ export default {
               } else {
                 msg = error.response.data.userMsg;
               }
-              eventBus.$emit("openDialogAlert", msg);
+              window.eventBus.$emit(openDialogAlert, msg);
             }
           });
       }
