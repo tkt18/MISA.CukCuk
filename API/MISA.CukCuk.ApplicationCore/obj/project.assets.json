@@ -1022,19 +1022,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thien\\.nuget\\packages\\": {}
+    "C:\\Users\\tkthien\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\MISA.CukCuk\\API\\MISA.CukCuk.ApplicationCore\\MISA.CukCuk.ApplicationCore.csproj",
+      "projectUniqueName": "F:\\TKThien\\MISA.CukCuk\\API\\MISA.CukCuk.ApplicationCore\\MISA.CukCuk.ApplicationCore.csproj",
       "projectName": "MISA.CukCuk.ApplicationCore",
-      "projectPath": "D:\\Code\\MISA.CukCuk\\API\\MISA.CukCuk.ApplicationCore\\MISA.CukCuk.ApplicationCore.csproj",
-      "packagesPath": "C:\\Users\\thien\\.nuget\\packages\\",
-      "outputPath": "D:\\Code\\MISA.CukCuk\\API\\MISA.CukCuk.ApplicationCore\\obj\\",
+      "projectPath": "F:\\TKThien\\MISA.CukCuk\\API\\MISA.CukCuk.ApplicationCore\\MISA.CukCuk.ApplicationCore.csproj",
+      "packagesPath": "C:\\Users\\tkthien\\.nuget\\packages\\",
+      "outputPath": "F:\\TKThien\\MISA.CukCuk\\API\\MISA.CukCuk.ApplicationCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\thien\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tkthien\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1048,11 +1048,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Code\\MISA.CukCuk\\API\\MISA.CukCuk.Common\\MISA.CukCuk.Common.csproj": {
-              "projectPath": "D:\\Code\\MISA.CukCuk\\API\\MISA.CukCuk.Common\\MISA.CukCuk.Common.csproj"
+            "F:\\TKThien\\MISA.CukCuk\\API\\MISA.CukCuk.Common\\MISA.CukCuk.Common.csproj": {
+              "projectPath": "F:\\TKThien\\MISA.CukCuk\\API\\MISA.CukCuk.Common\\MISA.CukCuk.Common.csproj"
             },
-            "D:\\Code\\MISA.CukCuk\\API\\MISA.CukCuk.Infrastructure\\MISA.CukCuk.Infrastructure.csproj": {
-              "projectPath": "D:\\Code\\MISA.CukCuk\\API\\MISA.CukCuk.Infrastructure\\MISA.CukCuk.Infrastructure.csproj"
+            "F:\\TKThien\\MISA.CukCuk\\API\\MISA.CukCuk.Infrastructure\\MISA.CukCuk.Infrastructure.csproj": {
+              "projectPath": "F:\\TKThien\\MISA.CukCuk\\API\\MISA.CukCuk.Infrastructure\\MISA.CukCuk.Infrastructure.csproj"
             }
           }
         }
@@ -1081,7 +1081,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
