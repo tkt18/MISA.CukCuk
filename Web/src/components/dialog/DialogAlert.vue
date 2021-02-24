@@ -39,12 +39,12 @@ export default {
       if (this.title == title) {
         this.isShow = false;
       }
-      window.eventBus.$on(openDialogAlert, messages => {
+    });
+    window.eventBus.$on(openDialogAlert, messages => {
         console.log(messages);
         this.messages = messages;
         this.isShow = true;
       });
-    });
   },
 };
 </script>
